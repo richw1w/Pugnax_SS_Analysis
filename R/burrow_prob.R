@@ -24,7 +24,7 @@ p1 <- visreg(Compaction_vs_Dig1,
        ylab = 'Probability of Creating a Burrow',
        xlab = 'Soil Strength (psi)') +
   scale_x_continuous(breaks = c(0,5,10,15,20,25)) +
-  scale_y_continuous(breaks = c(0,1)) +
+  #scale_y_continuous(breaks = c(0,1)) +
   scale_color_manual("Site", 
                      values=c("NAN"="orangered2",
                               "PIE"="darkblue")) +
@@ -52,7 +52,7 @@ p3 <- visreg(Compaction_vs_Dig3,
        ylab = 'Probability of Creating a Burrow',
        xlab = 'Soil Strength (psi)') +
   scale_x_continuous(breaks = c(0,5,10,15,20,25))+
-  scale_y_continuous(breaks = c(0,1)) +
+ # scale_y_continuous(breaks = c(0,1)) +
   scale_color_manual("Site", 
                      values=c("NAN"="orangered2",
                               "PIE"="darkblue")) +
@@ -63,8 +63,8 @@ p3
 
 #bringing it all together with patchwork
 svg("figures/probability_plot.svg", width = 10, height = 5)
-p1 + 
-  (p3 + guides(color = "none", fill = "none") + ylab("")) + 
+(p1 + labs(title = "One Crab")) + 
+  (p3 + guides(color = "none", fill = "none") + ylab("") + labs(title = "Three Crabs")) + 
   plot_annotation(tag_levels = 'A') + 
   plot_layout(guides = 'collect')
 dev.off()
