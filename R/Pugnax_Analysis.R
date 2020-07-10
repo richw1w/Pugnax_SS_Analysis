@@ -5,10 +5,8 @@ library(ggplot2)# install.packages('ggplot2')
 library(dplyr)
 library(DHARMa)
 library(Rmisc)
-install.packages('ggbeeswarm')
-library(ggbeeswarm)
-install.packages('visreg')
-library(visreg)
+library(ggbeeswarm) #install.packages('ggbeeswarm')
+library(visreg) #install.packages('visreg')
 
 #####Creating a theme#####
 My_theme = theme_bw() +
@@ -93,6 +91,7 @@ PIE_1crab <- PIE_nozero %>%
 Compaction_vs_vol_nonzero1 <-glm(Burrow_Volume ~ Soil_Strength_Before * 
                                    Site + Crab_Mass, 
                          data = nozero1)
+
 plot(simulateResiduals(Compaction_vs_vol_nonzero1))
 summary(Compaction_vs_vol_nonzero1)
 car::Anova(Compaction_vs_vol_nonzero1)
