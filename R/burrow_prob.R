@@ -15,7 +15,7 @@ summary(Compaction_vs_Dig1)
 car::Anova(Compaction_vs_Dig1)
 
 #fit plot with visreg
-visreg(Compaction_vs_Dig1,
+p1 <- visreg(Compaction_vs_Dig1,
        'Soil_Strength_Before',
        scale = 'response',
        by = 'Site',
@@ -28,7 +28,10 @@ visreg(Compaction_vs_Dig1,
   scale_color_manual("Site", 
                      values=c("NAN"="orangered2",
                               "PIE"="darkblue")) +
-  My_theme
+  My_theme +
+  geom_point(aes(color = Site))
+
+p1
 
 #three crab
 Compaction_vs_Dig3 <- glm(Dig~Soil_Strength_Before * 
@@ -40,7 +43,7 @@ summary(Compaction_vs_Dig3)
 car::Anova(Compaction_vs_Dig3)
 
 #fit the curve
-visreg(Compaction_vs_Dig3,
+p3 <- visreg(Compaction_vs_Dig3,
        'Soil_Strength_Before',
        scale = 'response',
        by = 'Site',
@@ -53,4 +56,15 @@ visreg(Compaction_vs_Dig3,
   scale_color_manual("Site", 
                      values=c("NAN"="orangered2",
                               "PIE"="darkblue")) +
-  My_theme
+  My_theme +
+  geom_point(aes(color = Site))
+
+p3
+
+#bringing it all together with patchwork
+svg("figures/probability_plot.svg", width = 10, height = 5)
+p1 + 
+  (p3 + guides(color = "none", fill = "none") + ylab("")) + 
+  plot_annotation(tag_levels = 'A') + 
+  plot_layout(guides = 'collect')
+dev.off()

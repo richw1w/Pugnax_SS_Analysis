@@ -1,4 +1,5 @@
 library(ggplot2)
+library(patchwork)
 
 #####Creating a theme#####
 My_theme = theme_bw() +
