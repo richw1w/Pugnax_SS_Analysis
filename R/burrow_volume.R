@@ -2,6 +2,7 @@
 
 #prep
 source("R/load_filter_data.R")
+source("R/maketabs.R")
 source("R/ggplot_prep.R")
 library(visreg) 
 library(DHARMa)
@@ -18,6 +19,7 @@ plotQQunif(res)
 
 car::Anova(Compaction_vs_vol_nonzero1)
 summary(Compaction_vs_vol_nonzero1)
+
 
 #fitting the curve
 b1 <- visreg(Compaction_vs_vol_nonzero1,
@@ -37,6 +39,16 @@ b1 <- visreg(Compaction_vs_vol_nonzero1,
 
 b1 <- b1 + scale_y_log10() + ylab('Log10 Burrow Volume (mL)')
 b1
+
+
+#tables
+fileConn<-file("tables/burrow_1_anova.html")
+print(xtable(car::Anova(Compaction_vs_vol_nonzero1)), type = "html") %>%
+  writeLines(fileConn)
+close(fileConn)
+
+
+  
 
 #three crab
 #interaction between compaction and site with mass as covariable
@@ -103,6 +115,16 @@ f(ggplot(nozero3, aes(y = Burrow_Volume,
   
 dev.off()
 
-  
+
+#Tables
+fileConn<-file("output.txt")
+
+bind_rows(anovatab(Compaction_vs_vol_nonzero1, "One Crab"),
+          anovatab(Compaction_vs_vol_nonzero3, "Three Crabs")) %>%
+  knitr::kable("html") %>%
+  writeLines("tables/burrow_anova.html")
+
+close(fileConn)
+
   
   
