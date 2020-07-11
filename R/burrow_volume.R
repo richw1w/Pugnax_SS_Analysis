@@ -126,5 +126,13 @@ bind_rows(anovatab(Compaction_vs_vol_nonzero1, "One Crab"),
 
 close(fileConn)
 
-  
+#coefs
+fileConn<-file("output.txt")
+
+bind_rows(coeftab(Compaction_vs_vol_nonzero1, "One Crab"),
+          coeftab(Compaction_vs_vol_nonzero3, "Three Crabs")) %>%
+  knitr::kable("html") %>%
+  writeLines("tables/burrow_coefs.html")
+
+close(fileConn)
   

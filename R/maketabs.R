@@ -17,3 +17,24 @@ anovatab <- function(x, prepend = ""){
   
 }
   
+
+coeftab <- function(x, prepend = ""){
+  
+  #format
+  out <- tidy(x) %>%
+    mutate(statistic = round(statistic, 4),
+           p.value = round(p.value, 3),
+           std.error = round(std.error, 3),
+           estimate = round(estimate, 3),
+    ) %>%
+    rename(Term = term,
+           Coefficient = estimate,
+           t = statistic,
+           `Standard Error` = std.error,
+           `P-Value` = p.value)
+  
+  bind_cols(tibble(` ` = c(prepend, rep("", nrow(out)-1))),
+            out)
+  
+}
+
