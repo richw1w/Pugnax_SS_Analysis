@@ -14,7 +14,9 @@ anovatab <- function(x, prepend = ""){
     rename(Term = term,
            `LR Chisq` = statistic,
            DF = df,
-           `P-Value` = p.value)
+           `P-Value` = p.value) %>%
+    mutate(Term = gsub("_", " ", Term),
+           Term = gsub("[()]", "", Term))
   
   bind_cols(tibble(` ` = c(prepend, rep("", nrow(out)-1))),
             out)
@@ -35,7 +37,9 @@ coeftab <- function(x, prepend = ""){
            Coefficient = estimate,
            t = statistic,
            `Standard Error` = std.error,
-           `P-Value` = p.value)
+           `P-Value` = p.value) %>%
+    mutate(Term = gsub("_", " ", Term),
+           Term = gsub("[()]", "", Term))
   
   bind_cols(tibble(` ` = c(prepend, rep("", nrow(out)-1))),
             out)
