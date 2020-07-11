@@ -135,4 +135,17 @@ bind_rows(coeftab(Compaction_vs_vol_nonzero1, "One Crab"),
   writeLines("tables/burrow_coefs.html")
 
 close(fileConn)
+
+#r2
+
+fileConn<-file("output.txt")
+
+bind_rows(rsq_tabl(Compaction_vs_vol_nonzero1, "One Crab"),
+          rsq_tabl(Compaction_vs_vol_nonzero3, "Three Crabs")) %>%
+  table_styling %>%
+  writeLines("tables/burrow_r2.html")
+
+close(fileConn)
+
+
   

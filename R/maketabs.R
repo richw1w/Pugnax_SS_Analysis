@@ -42,3 +42,14 @@ coeftab <- function(x, prepend = ""){
   
 }
 
+
+rsq_tabl <- function(x, prepend){
+  piecewiseSEM::rsquared(x) %>%
+    bind_cols(tibble(` ` = prepend),.)
+}
+
+table_styling <- . %>%
+  knitr::kable("html") %>% 
+  kable_styling() %>%
+  row_spec(0, align = "c",bold=T,  underline = TRUE ) %>%
+  column_spec(1, bold = T)
