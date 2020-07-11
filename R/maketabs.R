@@ -1,4 +1,8 @@
 library(broom)
+library(kable)
+library(kableExtra)
+
+
 anovatab <- function(x, prepend = ""){
   
   tab <- car::Anova(x)

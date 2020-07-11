@@ -68,3 +68,25 @@ svg("figures/probability_plot.svg", width = 10, height = 5)
   plot_annotation(tag_levels = 'A') + 
   plot_layout(guides = 'collect')
 dev.off()
+
+
+#Tables ####
+fileConn<-file("output.txt")
+
+bind_rows(anovatab(Compaction_vs_Dig1, "One Crab"),
+          anovatab(Compaction_vs_Dig3, "Three Crabs")) %>%
+  table_styling %>%
+  writeLines("tables/probability_anodev.html")
+
+close(fileConn)
+
+#coefs
+fileConn<-file("output.txt")
+
+bind_rows(coeftab(Compaction_vs_Dig1, "One Crab"),
+          coeftab(Compaction_vs_Dig3, "Three Crabs")) %>%
+  table_styling %>%
+  writeLines("tables/probability_coefs.html")
+
+close(fileConn)
+

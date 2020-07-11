@@ -99,7 +99,7 @@ f <-  function(x) x + geom_point() +
        x = 'Soil Strength (psi)')  +
   My_theme 
 
-### the plot
+### the plot ####
 svg("figures/burrow_plot.svg", width = 10, height = 5)
 f(ggplot(nozero1, aes(y = Burrow_Volume, 
                       x = Soil_Strength_Before,
@@ -116,12 +116,12 @@ f(ggplot(nozero3, aes(y = Burrow_Volume,
 dev.off()
 
 
-#Tables
+#Tables ####
 fileConn<-file("output.txt")
 
 bind_rows(anovatab(Compaction_vs_vol_nonzero1, "One Crab"),
           anovatab(Compaction_vs_vol_nonzero3, "Three Crabs")) %>%
-  knitr::kable("html") %>%
+  table_styling %>%
   writeLines("tables/burrow_anova.html")
 
 close(fileConn)
@@ -131,7 +131,7 @@ fileConn<-file("output.txt")
 
 bind_rows(coeftab(Compaction_vs_vol_nonzero1, "One Crab"),
           coeftab(Compaction_vs_vol_nonzero3, "Three Crabs")) %>%
-  knitr::kable("html") %>%
+  table_styling %>%
   writeLines("tables/burrow_coefs.html")
 
 close(fileConn)
