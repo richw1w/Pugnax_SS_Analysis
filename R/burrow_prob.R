@@ -2,6 +2,7 @@
 #prep
 source("R/load_filter_data.R")
 source("R/ggplot_prep.R")
+source("R/maketabs.R")
 library(visreg) 
 library(DHARMa)
 
@@ -28,8 +29,7 @@ p1 <- visreg(Compaction_vs_Dig1,
   scale_color_manual("Site", 
                      values=c("NAN"="orangered2",
                               "PIE"="darkblue")) +
-  My_theme +
-  geom_point(aes(color = Site))
+  My_theme 
 
 p1
 
@@ -56,8 +56,7 @@ p3 <- visreg(Compaction_vs_Dig3,
   scale_color_manual("Site", 
                      values=c("NAN"="orangered2",
                               "PIE"="darkblue")) +
-  My_theme +
-  geom_point(aes(color = Site))
+  My_theme 
 
 p3
 
