@@ -17,6 +17,7 @@ car::Anova(Compaction_vs_Dig1)
 
 #fit plot with visreg
 p1 <- visreg(Compaction_vs_Dig1,
+             rug = FALSE,
        'Soil_Strength_Before',
        scale = 'response',
        by = 'Site',
@@ -29,9 +30,12 @@ p1 <- visreg(Compaction_vs_Dig1,
   scale_color_manual("Site", 
                      values=c("NAN"="orangered2",
                               "PIE"="darkblue")) +
-  My_theme 
+  My_theme + geom_point(data = master1, alpha = 0.8,
+                          position = position_jitter(height = 0.03, width = 0.4),
+                          aes(y = Dig, x = Soil_Strength_Before, color = Site)) 
 
-p1
+
+p1 
 
 #three crab
 Compaction_vs_Dig3 <- glm(Dig~Soil_Strength_Before * 
@@ -44,6 +48,7 @@ car::Anova(Compaction_vs_Dig3)
 
 #fit the curve
 p3 <- visreg(Compaction_vs_Dig3,
+             rug = FALSE,
        'Soil_Strength_Before',
        scale = 'response',
        by = 'Site',
@@ -56,7 +61,9 @@ p3 <- visreg(Compaction_vs_Dig3,
   scale_color_manual("Site", 
                      values=c("NAN"="orangered2",
                               "PIE"="darkblue")) +
-  My_theme 
+  My_theme + geom_point(data = master3, alpha = 0.8,
+                      position = position_jitter(height = 0.03, width = 0.4),
+                      aes(y = Dig, x = Soil_Strength_Before, color = Site)) 
 
 p3
 
