@@ -1,0 +1,7 @@
+install.packages(c("ggplot2", "devtools", "dplyr", "stringr"))
+install.packages(c("maps", "mapdata"))
+devtools::install_github("dkahle/ggmap")
+library(ggplot2)
+library(ggmap)
+library(maps)
+library(mapdata)
