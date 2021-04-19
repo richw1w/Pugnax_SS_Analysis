@@ -10,14 +10,14 @@ small_PIE <- master3 %>%
   filter(Crab_Mass <= 7.5)
 
 # Filter our only NAN
-small_NAN <- master3 %>%
+small_NAN_first <- master3 %>%
   dplyr::filter(Site == "NAN")
 
 ##
 # Randomly remove 6 rows from NAN, which is the number
 # of crabs larger than 9g from PIE to even the sample
 # size
-small_NAN <- (small_NAN[-as.integer(runif(c(nrow(small_NAN) - nrow(small_PIE)), 1, 48)),])
+small_NAN <- (small_NAN_first[-as.integer(runif(c(nrow(small_NAN_first) - nrow(small_PIE)), 1, 48)),])
 
 ##
 # Join the PIE and NAN small datasets together
