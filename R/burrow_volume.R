@@ -111,7 +111,8 @@ f(ggplot(nozero3, aes(y = Burrow_Volume,
     guides(color = "none", fill = "none") + 
     ylab("") + labs(title = "Three Crabs")) + 
   plot_annotation(tag_levels = 'A') + 
-  plot_layout(guides = 'collect')
+  plot_layout(guides = 'collect') +
+  ggsave("figures/combined_volume.jpeg", width = 12, height = 7) # Uncomment out when needing to save again
   
 dev.off()
 
