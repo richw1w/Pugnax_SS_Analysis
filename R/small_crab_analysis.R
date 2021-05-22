@@ -42,4 +42,9 @@ summary(lm(data = master1, Crab_Mass ~ Site))
 # Nope. So, as before, the only significant result was in Site
 # Removing the biggest fellas didn't change the analysis
 
-   
+# One last analysis, check to see if mass differed between sites 
+# in the three crab treatment
+# Nope, how about for the one crab treatment
+summary(lm(data = master3, Crab_Mass ~ Site))
+
+# Yes it did, which validates our culling rationale

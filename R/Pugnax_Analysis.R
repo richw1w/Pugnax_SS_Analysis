@@ -10,12 +10,12 @@ library(visreg) #install.packages('visreg')
 
 #####Creating a theme#####
 My_theme = theme_bw() +
-  theme(axis.title.x = element_text(size = 18),
-        axis.text.x = element_text(size = 12),
-        axis.title.y = element_text(size = 18),
-        axis.text.y = element_text(size = 12),
-        legend.title = element_text(size = 15),
-        legend.text = element_text(size = 15))
+  theme(axis.title.x = element_text(size = 22, face = "bold"),
+        axis.text.x = element_text(size = 19),
+        axis.title.y = element_text(size = 22, face = "bold"),
+        axis.text.y = element_text(size = 19),
+        legend.title = element_text(size = 20),
+        legend.text = element_text(size = 20))
 
 My_color = scale_color_manual("Site", values=c("NAN"="orangered2",
                                              "PIE"="darkblue"))
@@ -159,7 +159,8 @@ visreg(Compaction_vs_Dig1,
   scale_color_manual("Site", 
                      values=c("NAN"="orangered2",
                               "PIE"="darkblue")) +
-  My_theme
+  My_theme +
+  ggsave("figures/burrow_plot_fit_one_crab.jpeg")
 
 #three crab
 Compaction_vs_Dig3 <- glm(Dig~Soil_Strength_Before * 
@@ -184,7 +185,8 @@ visreg(Compaction_vs_Dig3,
   scale_color_manual("Site", 
                      values=c("NAN"="orangered2",
                               "PIE"="darkblue")) +
-  My_theme
+  My_theme  +
+  ggsave("figures/burrow_plot_fit_three_crab.jpeg")
 
 ######SS before and after#####
 before_and_after <- glm(Soil_Strength_After ~ Soil_Strength_Before * 
